@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from '@/components/TodoForm';
 import TodoList from '@/components/TodoList';
+import { Button } from "@/components/ui/button"; // Import Button
 
 interface Todo {
   id: string;
@@ -39,6 +40,16 @@ const TodoListPage: React.FC = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const editTodo = (id: string, newText: string) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, text: newText } : todo
+    ));
+  };
+
+  const clearCompleted = () => {
+    setTodos(todos.filter(todo => !todo.completed));
+  };
+
   return (
     <div className="container mx-auto p-4 max-w-md">
       <h1 className="text-2xl font-bold text-center mb-6">Simple Todo App</h1>
@@ -47,7 +58,15 @@ const TodoListPage: React.FC = () => {
         todos={todos}
         onToggleComplete={toggleComplete}
         onDelete={deleteTodo}
+        onEdit={editTodo} // Pass the editTodo function
       />
+      {todos.some(todo => todo.completed) && ( // Only show button if there are completed todos
+        <div className="text-center mt-4">
+          <Button variant="outline" onClick={clearCompleted}>
+            Clear Completed ({todos.filter(todo => todo.completed).length})
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
