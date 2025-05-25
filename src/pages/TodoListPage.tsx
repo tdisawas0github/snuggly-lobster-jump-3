@@ -73,13 +73,16 @@ const TodoListPage: React.FC = () => {
     return parseInt(b.id) - parseInt(a.id);
   });
 
+  const incompleteCount = todos.filter(todo => !todo.completed).length;
+
 
   return (
     <div className="container mx-auto p-4 max-w-md">
-      <div className="flex justify-between items-center mb-6"> {/* Flex container for header and toggle */}
+      <div className="flex justify-between items-center mb-2"> {/* Adjusted margin-bottom */}
         <h1 className="text-2xl font-bold text-center bg-blue-500 text-white py-3 px-6 rounded-md flex-grow mr-4">Simple Todo App</h1> {/* Adjusted header styling */}
         <ThemeToggle /> {/* Add the ThemeToggle component */}
       </div>
+      <p className="text-center text-muted-foreground mb-6">{incompleteCount} tasks remaining</p> {/* Added task count */}
       <TodoForm onAddTodo={addTodo} />
       <TodoList
         todos={sortedTodos} // Use sorted todos
