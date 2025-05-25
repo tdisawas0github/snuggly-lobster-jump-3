@@ -7,10 +7,11 @@ interface TodoListProps {
     id: string;
     text: string;
     completed: boolean;
+    dueDateTime?: string; // Added dueDateTime
   }[];
   onToggleComplete: (id: string) => void;
   onDelete: (id: string) => void;
-  onEdit: (id: string, newText: string) => void; // Added onEdit prop
+  onEdit: (id: string, newText: string, newDueDateTime?: string) => void; // Updated onEdit prop signature
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onToggleComplete, onDelete, onEdit }) => {
@@ -29,7 +30,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onToggleComplete, onDelete, 
               todo={todo}
               onToggleComplete={onToggleComplete}
               onDelete={onDelete}
-              onEdit={onEdit} // Pass onEdit prop
+              onEdit={onEdit} // Pass the updated onEdit prop
             />
           ))
         )}
