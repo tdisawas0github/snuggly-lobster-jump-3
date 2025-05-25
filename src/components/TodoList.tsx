@@ -16,7 +16,7 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({ todos, onToggleComplete, onDelete, onEdit }) => {
   return (
-    <Card>
+    <Card className="border-blue-500 border-2"> {/* Added border color and width */}
       <CardHeader>
         <CardTitle>My Todos</CardTitle>
       </CardHeader>

@@ -75,7 +75,7 @@ const TodoListPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-md">
-      <h1 className="text-2xl font-bold text-center mb-6">Simple Todo App</h1>
+      <h1 className="text-2xl font-bold text-center mb-6 bg-blue-500 text-white py-3 rounded-md">Simple Todo App</h1> {/* Added background and text color */}
       <TodoForm onAddTodo={addTodo} />
       <TodoList
         todos={sortedTodos} // Use sorted todos
