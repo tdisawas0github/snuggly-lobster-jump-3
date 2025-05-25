@@ -3,6 +3,7 @@ import TodoForm from '@/components/TodoForm';
 import TodoList from '@/components/TodoList';
 import { Button } from "@/components/ui/button";
 import { parseISO } from 'date-fns'; // Import parseISO for sorting
+import { ThemeToggle } from '@/components/ThemeToggle'; // Import ThemeToggle
 
 interface Todo {
   id: string;
@@ -75,7 +76,10 @@ const TodoListPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-md">
-      <h1 className="text-2xl font-bold text-center mb-6 bg-blue-500 text-white py-3 rounded-md">Simple Todo App</h1> {/* Added background and text color */}
+      <div className="flex justify-between items-center mb-6"> {/* Flex container for header and toggle */}
+        <h1 className="text-2xl font-bold text-center bg-blue-500 text-white py-3 px-6 rounded-md flex-grow mr-4">Simple Todo App</h1> {/* Adjusted header styling */}
+        <ThemeToggle /> {/* Add the ThemeToggle component */}
+      </div>
       <TodoForm onAddTodo={addTodo} />
       <TodoList
         todos={sortedTodos} // Use sorted todos
